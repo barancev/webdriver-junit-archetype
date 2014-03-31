@@ -1,4 +1,4 @@
-webdriver-junit-archetype
+WebDriver JUnit Archetype
 =========================
 
 Archetype for a Maven project that can be used as a start point to develop tests in Java with WebDriver and JUnit
