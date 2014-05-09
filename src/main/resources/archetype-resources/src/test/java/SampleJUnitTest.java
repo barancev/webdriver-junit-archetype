@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${groupId};
+package ${package};
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import org.openqa.selenium.support.PageFactory;
 
-import test.pages.HomePage;
+import ${package}.pages.HomePage;
 
 public class SampleJUnitTest extends JUnitTestBase {
 

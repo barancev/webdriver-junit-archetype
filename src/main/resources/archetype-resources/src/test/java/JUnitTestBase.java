@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${groupId};
+package ${package};
 
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -12,7 +12,7 @@ import org.openqa.selenium.Capabilities;
 
 import ru.stqa.selenium.factory.WebDriverFactory;
 
-import test.util.PropertyLoader;
+import ${package}.util.PropertyLoader;
 
 /**
  * Base class for all the JUnit-based test classes
