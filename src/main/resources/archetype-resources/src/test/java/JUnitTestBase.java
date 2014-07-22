@@ -31,6 +31,11 @@ public class JUnitTestBase {
     protected void before() throws Throwable {
       baseUrl = PropertyLoader.loadProperty("site.url");
       gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
+      baseUrl = PropertyLoader.loadProperty("site.url");
+      gridHubUrl = PropertyLoader.loadProperty("grid.url");
+      if ("".equals(gridHubUrl)) {
+        gridHubUrl = null;
+      }
       capabilities = PropertyLoader.loadCapabilities();
     };
   };
