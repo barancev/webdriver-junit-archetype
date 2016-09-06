@@ -4,28 +4,26 @@
 package ${package};
 
 import org.junit.Rule;
-import org.junit.rules.ExternalResource;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import ru.stqa.selenium.factory.WebDriverFactory;
-import ru.stqa.selenium.factory.WebDriverFactoryMode;
+import ru.stqa.selenium.factory.WebDriverPool;
 
 @RunWith(Suite.class)
 @SuiteClasses({SampleJUnitTest.class})
 public class JUnitTestSuite {
 
   @Rule
-  public ExternalResource webDriverFactory = new ExternalResource() {
+  public TestRule webDriverPool = new TestWatcher() {
     @Override
-    protected void before() throws Throwable {
-      WebDriverFactory.setMode(WebDriverFactoryMode.THREADLOCAL_SINGLETON);
-    };
-
-    @Override
-    protected void after() {
-      WebDriverFactory.dismissAll();
+    protected void finished(Description description) {
+      super.finished(description);
+      WebDriverPool.DEFAULT.dismissAll();
+      
     };
   };
 }

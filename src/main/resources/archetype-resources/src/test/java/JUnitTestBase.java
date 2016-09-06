@@ -10,7 +10,7 @@ import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
 
-import ru.stqa.selenium.factory.WebDriverFactory;
+import ru.stqa.selenium.factory.WebDriverPool;
 
 import ${package}.util.PropertyLoader;
 
@@ -44,7 +44,7 @@ public class JUnitTestBase {
   public ExternalResource webDriver = new ExternalResource() {
     @Override
     protected void before() throws Throwable {
-      driver = WebDriverFactory.getDriver(gridHubUrl, capabilities);
+      driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
     };
   };
 }
