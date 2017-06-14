@@ -23,7 +23,6 @@ public class JUnitTestSuite {
     protected void finished(Description description) {
       super.finished(description);
       WebDriverPool.DEFAULT.dismissAll();
-      
     };
   };
 }

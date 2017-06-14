@@ -3,6 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
+import java.net.URL;
+
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
@@ -12,14 +14,12 @@ import org.openqa.selenium.Capabilities;
 
 import ru.stqa.selenium.factory.WebDriverPool;
 
-import ${package}.util.PropertyLoader;
-
 /**
  * Base class for all the JUnit-based test classes
  */
 public class JUnitTestBase {
 
-  protected static String gridHubUrl;
+  protected static URL gridHubUrl;
   protected static String baseUrl;
   protected static Capabilities capabilities;
 
@@ -29,14 +29,12 @@ public class JUnitTestBase {
   public static ExternalResource webDriverProperties = new ExternalResource() {
     @Override
     protected void before() throws Throwable {
-      baseUrl = PropertyLoader.loadProperty("site.url");
-      gridHubUrl = PropertyLoader.loadProperty("grid2.hub");
-      baseUrl = PropertyLoader.loadProperty("site.url");
-      gridHubUrl = PropertyLoader.loadProperty("grid.url");
-      if ("".equals(gridHubUrl)) {
-        gridHubUrl = null;
+      SuiteConfiguration config = new SuiteConfiguration();
+      baseUrl = config.getProperty("site.url");
+      if (config.hasProperty("grid.url") && !"".equals(config.getProperty("grid.url"))) {
+        gridHubUrl = new URL(config.getProperty("grid.url"));
       }
-      capabilities = PropertyLoader.loadCapabilities();
+      capabilities = config.getCapabilities();
     };
   };
 
